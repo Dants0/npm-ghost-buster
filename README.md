@@ -43,6 +43,7 @@ npx npm-ghost-buster --path .
 - `--ignore <deps>`: Comma-separated dependency names to ignore.
 - `--json`: Output machine-readable JSON.
 - `--fail-on-ghosts`: Exit with code `1` if unused/phantom dependencies are found.
+- `--no-interactive`: Disable the interactive uninstall prompt (Good for CI).
 
 ### Example
 
@@ -50,11 +51,45 @@ npx npm-ghost-buster --path .
 npx npm-ghost-buster --include-peer --ignore typescript,eslint --json
 ```
 
+```bash
+npx npm-ghost-buster --fail-on-ghosts --no-interactive
+```
+
+```bash
+npx npm-ghost-buster --ignore typescript,eslint-plugin-react,@types/node
+```
+
+## 🪄 Interactive Mode (Zap)
+
+```bash
+? Select unused packages to uninstall automatically:
+ › [x] lodash
+   [ ] moment
+   [x] request
+```
+
 ## 🔍 What gets scanned
 
 - ESM `import ... from 'pkg'`
 - Side-effect imports `import 'pkg'`
-- `export ... from 'pkg'`
+- Exports: `export { foo } from 'bar'`
 - CommonJS `require('pkg')`
 - Dynamic imports `import('pkg')`
 
+## 🤝 Contributing
+
+Pull requests are welcome!
+
+Fork the Project
+
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
+
+Commit your Changes (git commit -m 'feat: Add some AmazingFeature')
+
+Push to the Branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See LICENSE for more information.
