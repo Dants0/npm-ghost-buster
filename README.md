@@ -13,18 +13,48 @@
 
 We classify dependency issues into two types of ghosts:
 
-1.  👻 **The Unused Ghost (Bloat):**
-    Dependencies listed in your `package.json` that are **never imported** in your code. They slow down installation and bloat your `node_modules`.
+1. 👻 **The Unused Ghost (Bloat):**
+   Dependencies listed in your `package.json` that are **never imported** in your code.
 
-2.  😱 **The Phantom Ghost (Dangerous):**
-    Packages you import and use in your code, but **forgot to install** (they are missing from `package.json`). These cause "Module not found" errors in production or CI/CD pipelines.
+2. 😱 **The Phantom Ghost (Dangerous):**
+   Packages you import and use in your code, but **forgot to install** (they are missing from `package.json`).
 
 ---
 
 ## 🚀 Installation
 
-You can run it directly using `npx` (recommended):
+Run directly with `npx` (recommended):
 
 ```bash
 npx npm-ghost-buster
 ```
+
+## 🧪 Usage
+
+```bash
+npx npm-ghost-buster --path .
+```
+
+### CLI options
+
+- `-p, --path <path>`: Project root to scan.
+- `--include-optional`: Include `optionalDependencies` in checks.
+- `--include-peer`: Include `peerDependencies` in checks.
+- `--ignore <deps>`: Comma-separated dependency names to ignore.
+- `--json`: Output machine-readable JSON.
+- `--fail-on-ghosts`: Exit with code `1` if unused/phantom dependencies are found.
+
+### Example
+
+```bash
+npx npm-ghost-buster --include-peer --ignore typescript,eslint --json
+```
+
+## 🔍 What gets scanned
+
+- ESM `import ... from 'pkg'`
+- Side-effect imports `import 'pkg'`
+- `export ... from 'pkg'`
+- CommonJS `require('pkg')`
+- Dynamic imports `import('pkg')`
+
