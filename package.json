@@ -22,11 +22,13 @@
     "commander": "^14.0.3",
     "glob": "^13.0.2",
     "ora": "^9.3.0",
+    "prompts": "^2.4.2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/node": "^25.2.3",
+    "@types/prompts": "^2.4.9",
     "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
     "tsup": "^8.5.1",
