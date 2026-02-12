@@ -1,22 +1,44 @@
 {
   "name": "npm-ghost-buster",
   "version": "1.2.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A CLI tool to find unused and phantom dependencies in your project.",
+  "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "npm-ghost-buster": "./bin/cli.js"
+    "npm-ghost-buster": "./dist/index.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm --clean --sourcemap",
     "start": "node dist/index.js",
     "bust": "npm run build && node dist/index.js --path .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cli",
+    "analysis",
+    "dependencies",
+    "typescript",
+    "ghost",
+    "dead-code",
+    "cleanup"
+  ],
+  "author": "Guilherme Dantas",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dants0/npm-ghost-buster.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dants0/npm-ghost-buster/issues"
+  },
+  "homepage": "https://github.com/dants0/npm-ghost-buster#readme",
   "dependencies": {
     "chalk": "^5.6.2",
     "commander": "^14.0.3",
